@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using ivforumWebAPI.Data;
 using ivforumWebAPI.Models;
 using ivforumWebAPI.ViewModel;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ivforumWebAPI.Controllers
 {
+    [EnableCors("all")]
     [Route("api/accounts")]
     public class AccountsController : Controller
     {
@@ -51,7 +53,7 @@ namespace ivforumWebAPI.Controllers
             await db.DbUsers.AddAsync(user);
             await db.SaveChangesAsync();
 
-            return new OkObjectResult("200 OK: Account created");
+            return new JsonResult("200 OK: Account created");
         }
     }
 }
